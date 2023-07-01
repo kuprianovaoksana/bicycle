@@ -1,0 +1,39 @@
+.h1 {
+    color: #4700BE;
+}
+
+.employeesHeaders {
+    display: flex;
+    color:#4700BE;
+    justify-content: space-between;
+}
+
+.employeesTable {
+    display: flex;
+    flex-direction: column;
+    p {
+        width: 300px;
+    }
+} 
+
+.employees {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        p, input {
+            width: 300px;
+        }
+}
+
+.button {
+    cursor: pointer;
+    width: 200px;
+}
+
+form {
+    margin-top: 50px;
+    input {
+        margin: 10px;
+    }
+}

@@ -1,0 +1,43 @@
+.main {
+    margin: 0 auto;
+    max-width: 1400px;
+    min-width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    h1 {
+        color: #ff3a8c;
+        font-size: 46px;
+    }
+
+    h2 {
+        color: #4700BE;
+        font-size: 38px;
+        margin-left: 20px;
+    }
+}
+
+@media screen and (max-width: 1420px) {
+    main {
+            img {
+        width: 500px;
+    }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .main {
+        max-width: 800px;
+        margin-top: 50px;
+    }
+}
+
+@media screen and (max-width: 845px) {
+    .main {
+        flex-direction: column;
+        h2 {
+            margin-left: 50px;
+        }
+    }
+}

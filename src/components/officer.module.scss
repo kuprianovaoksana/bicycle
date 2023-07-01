@@ -1,0 +1,39 @@
+h1 {
+    color: #4700BE;
+    margin-left: 50px;
+}
+
+.officers {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    input, select {
+            color: black;
+            font-size: 16px;
+            width: 500px;
+    }
+    label {
+        margin-top: 10px;
+        font-size: 16px;
+    }
+    button {
+        width: 200px;
+        margin-bottom: 20px;
+    }
+}
+
+.message{
+    color:#ff3a8c;
+    font-size: 26px;
+    text-align: center;
+}
+
+.checkbox{
+display: flex;
+justify-content: flex-start;
+align-items: center;
+input{
+    width: 50px;
+    height: 20px;
+}
+}

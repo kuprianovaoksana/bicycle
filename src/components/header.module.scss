@@ -1,0 +1,110 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 10px 15px;
+    max-width: 1400px;
+    min-width: 400px;
+}
+
+.menuNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    width: 1250px;
+    height: 30px;
+    background-color: #7D97F4;
+    border-radius: 25px;
+
+    nav {
+
+        .NavLink {
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .NavLink:hover {
+            background-color: #4700BE;
+            border-radius: 25px;
+        }
+       
+    }
+}
+
+
+button {
+    background-color: #4700BE;
+    border: none;
+    border-radius: 25px;
+    width: 95px;
+    padding: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    color: white;
+}
+
+.buttonLink:hover {
+    button {
+            color: #7D97F4;
+
+    }
+
+}
+
+.buttonLink {
+    text-decoration: none;
+    color: white;
+
+}
+
+@media screen and (max-width: 1420px) {
+ .header{
+    max-width: 1200px;
+ }
+}
+
+@media screen and (max-width: 1200px) {
+    .menuNav {
+        width:900px;
+
+    }
+}
+
+@media screen and (max-width: 1108px) {
+    .menuNav {
+        flex-direction:column;
+        width: 600px;
+        height: auto;
+
+        div {
+            display: flex;
+            flex-direction:column;
+
+            button {
+                margin-top: 5px;
+            }
+        }
+
+        nav {
+            display: flex;
+            flex-direction:column;
+            align-items:center;
+
+
+        }
+    }
+
+    .nav {
+        flex-direction:column;
+    }
+}
+
+@media screen and (max-width: 845px) {
+    .menuNav {
+        width: 300px;
+        height: auto;
+    }
+}

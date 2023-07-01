@@ -1,0 +1,29 @@
+.h1 {
+    color: #4700BE;
+}
+
+.registration {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    * {
+        min-height: 20px;
+        margin-bottom: 20px;
+    }
+}    
+
+.navLink {
+        color:#ff3a8c;
+        text-decoration: none;
+        cursor: pointer;
+}
+
+.navLink:hover {
+    text-decoration: underline;
+
+}
+
+.message{
+    color:#ff3a8c;
+    font-size: 20px;
+}

@@ -1,0 +1,40 @@
+.h1 {
+    color: #4700BE;
+}
+
+.stealHeaders {
+    display: flex;
+    color:#4700BE;
+    justify-content: space-between;
+}
+
+.stealsTable {
+    display: flex;
+    flex-direction: column;
+    p {
+        width: 300px;            
+    }
+}
+
+
+// .pDate{
+//     width: 81px;
+//     overflow: hidden;
+//     white-space: nowrap;        
+//     text-overflow: clip;
+// }
+
+.steals {
+        display: flex;
+        align-items: center;
+
+        cursor: pointer;
+
+        p {
+            width: 300px;
+        }
+}
+
+.button {
+    cursor: pointer;
+}

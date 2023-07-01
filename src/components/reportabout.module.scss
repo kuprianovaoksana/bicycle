@@ -1,0 +1,54 @@
+.h1 {
+    color: #4700BE;
+    text-align: center;
+    margin-left: -10px;
+}
+
+
+.registration {
+
+    margin-top: 20px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+
+    * {
+        min-height: 20px;
+        margin-bottom: 20px;
+    }
+
+    button {
+        width: auto;
+    }
+
+    div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        font-size: 14px;
+        color:grey;
+    }
+
+    select {
+        margin-left: 10px;
+    }
+}    
+
+.navLink {
+        color:#ff3a8c;
+        text-decoration: none;
+        cursor: pointer;
+}
+
+.navLink:hover {
+    text-decoration: underline;
+}
+
+.message{
+    color:#ff3a8c;
+    font-size: 26px;
+    text-align: center;
+}
