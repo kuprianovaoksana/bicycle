@@ -2,6 +2,8 @@ import css from './registration.module.scss';
 import {NavLink} from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import {useNavigate} from 'react-router-dom';
+
 
 
 const Registration = () => {
@@ -12,6 +14,9 @@ const Registration = () => {
     const [lastName, setLastName] = useState("");
     const [clientId, setClientId] = useState("");
     const [message, setMessage] = useState("");
+
+    let navigate = useNavigate();
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -37,7 +42,8 @@ const Registration = () => {
 
 
             setTimeout(() => {
-              window.location.replace("/entrance");
+              // window.location.replace("/entrance");
+              navigate("/entrance");
             }, 2000);
           },
           {
@@ -51,7 +57,7 @@ const Registration = () => {
     };
   
 
-    const changeMail = (e) => {
+      const changeMail = (e) => {
         setEmail(e.target.value);
       };
       const changePassword = (e) => {

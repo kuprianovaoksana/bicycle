@@ -1,6 +1,7 @@
 import css from "./case.module.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import {useNavigate} from 'react-router-dom';
 
 
 
@@ -23,43 +24,55 @@ const Case = () => {
     const [type, setType] = useState("");
     const [updatedAt, setUpdatedAt] = useState("");
 
-    const href=""+window.location.href;
+    const href="" + window.location.href;
     const id = href.split('case/')[1];
 
-    const getData = async () => {
+    let navigate = useNavigate();
 
-    const result = await 
+    useEffect(()=>{
+        const getData = async () => {
 
-        axios
-        .get ('https://sf-final-project-be.herokuapp.com/api/cases/'+id,
-        {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-        })
-        .catch((error) => {
-            setMessage(error.response.data.message);
-            if(error.response.status===401)
-            {
-                window.location.replace(`/entrance`)
-            }
-            else {
-                setMessage(error.response.data.message);
-            }
-    });
+            console.log("получение данных");
 
-    setData(result.data.data);
-}
+            const result = await 
 
-getData();
+                axios
+                .get ('https://sf-final-project-be.herokuapp.com/api/cases/' + id,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: "Bearer " + localStorage.getItem("token"),
+                    },
+                })
+                .then ((response) => {
+                    !data ?         
+                    setData(response.data.data)
+                    : console.log("");
+                })
+
+                .catch((error) => {
+                    
+                    if ( error.response.status === 401 )
+                    {
+                        // window.location.replace(`/entrance`)
+                        navigate(`/entrance`);
+                    }
+                    else {
+                        setMessage(error.response.data.message);
+                    }
+            });
+        }
+        getData();
+    }, []);
 
 const handleSubmit = async (e) => {
+
     e.preventDefault();
     setMessage("Данные отправляются, пожалуйста подождите...");
+    console.log("редактирование данных");
 
     axios
-    .put('https://sf-final-project-be.herokuapp.com/api/cases/'+id, {
+    .put('https://sf-final-project-be.herokuapp.com/api/cases/' + id, {
         status,
         licenseNumber,
         ownerFullName,
@@ -106,33 +119,33 @@ const handleSubmit = async (e) => {
                     <input type="date" name="date" placeholder={data.date} value={date} onChange={(e) => setDate(e.target.value)}/>
                     <label>Описание:</label>
                     <input type="text" name="description" placeholder={data.description} value={description} onChange={(e) => setDescription(e.target.value)}/>
-                    <label>Номер лицензии:</label>
+                    <label>Номер лицензии *:</label>
                     <input type="text" name="licenseNumber" placeholder={data.licenseNumber} value={licenseNumber} onChange={(e) => setLicenseNumber(e.target.value)}/>
                     <label>Сотрудник:</label>
                     <input type="text" name="officer" placeholder={data.officer} value={officer} onChange={(e) => setOfficer(e.target.value)}/>
-                    <label>Владелец:</label>
+                    <label>Владелец *:</label>
                     <input type="text" name="ownerFullName" placeholder={data.ownerFullName} value={ownerFullName} onChange={(e) => setOwnerFullName(e.target.value)}/>
                     <label>Комментарии:</label>
                     <input type="text" name="resolution" placeholder={data.resolution} value={resolution} onChange={(e) => setResolution(e.target.value)}/>
-                    <label>Статус:</label>
+                    <label>Статус *:</label>
                         <select value={status} onChange={(e) => setStatus(e.target.value)} placeholder={data.status}>
                                 <option>new</option>
                                 <option>in_progress</option>
                                 <option>done</option>
                         </select>
                     <label>Тип велосипеда:</label>
-                    <select value={type} onChange={(e) => setType(e.target.value)}>
-                        <option>sport</option>
-                        <option>general</option>
-                    </select>
+                        <select value={type} onChange={(e) => setType(e.target.value)}>
+                            <option>sport</option>
+                            <option>general</option>
+                        </select>
                     <label>Изменено:</label>
                     <input className={css.inputDate} type="text" name="updatedAt" placeholder={data.updatedAt} value={updatedAt} onChange={(e) => setUpdatedAt(e.target.value)} disabled/>
                     <p className={css.message}>{message}</p>
                     <button>Редактировать</button>       
-
                 </form>
             </div>
-            : <div>Идет загрузка данных...</div>
+            : 
+            <div>Идет загрузка данных...</div>
         }
         </>
     )

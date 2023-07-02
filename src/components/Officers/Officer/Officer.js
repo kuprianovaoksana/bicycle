@@ -1,6 +1,8 @@
 import css from "./officer.module.scss";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import {useNavigate} from 'react-router-dom';
+
 
 
 const Officer = (item) => {
@@ -18,38 +20,53 @@ const Officer = (item) => {
 
     const href=""+window.location.href;
     const id = href.split('officer/')[1];
+    let navigate = useNavigate();
 
-    const getData = async (e) => {
 
-        const result = await 
+        useEffect(()=>{
+                    const getData = async () => {
 
-        axios
-        .get ('https://sf-final-project-be.herokuapp.com/api/officers/'+id,
-        {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-        })
-        .catch((error) => {
-            setMessage(error.response.data.message);
-            if(error.response.status===401)
+            console.log("запрос информации сотрудника");
+
+            const result =  await
+
+            axios
+            .get ('https://sf-final-project-be.herokuapp.com/api/officers/'+id,
             {
-                window.location.replace(`/entrance`)
-            }
-            else {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + localStorage.getItem("token"),
+                },
+            })
+            .then ((response) => {
+                !data ?         
+                setData(response.data.data)
+                : console.log("");
+            })
+
+            .catch((error) => {
                 setMessage(error.response.data.message);
-            }
-    });
+                console.log(error);
+                if( error.response.status === 401 )
+                {
+                    // window.location.replace(`/entrance`)
+                    navigate('/entrance')
+                }
+                else {
+                    setMessage(error.response.data.message);
+                }
+        });
+        }
+        getData();
 
-        setData(result.data.data);
-    }
+        });
 
-getData();
 
 const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("Данные отправляются, пожалуйста подождите...");
+    console.log("запрос изменения сотрудника");
+
 
     axios
     .put('https://sf-final-project-be.herokuapp.com/api/officers/'+id, {
@@ -68,7 +85,6 @@ const handleSubmit = async (e) => {
     )
     .then((response) => {
       setMessage("Данные изменены!");
-      console.log(response);
     },
     )
     .catch((error) => {
@@ -104,7 +120,7 @@ return(
             <label>Фамилия:</label>
             <input type="text" name="lastName" placeholder={data.lastName} value={lastName} onChange={(e) => setLastName(e.target.value)}/>
             <label>Пароль:</label>
-            <input type="text" name="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+            <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
             <p className={css.message}>{message}</p>
             <button>Редактировать</button>       
         </form>
