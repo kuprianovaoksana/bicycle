@@ -106,7 +106,8 @@ const Steal = () => {
                                         <p>{item.type}</p>
                                         {
                                             item.date?
-                                            <p>{moment(item.date).format('l')}</p>
+                                            // <p>{moment(item.date).format('l')}</p>
+                                            <p>{moment(item.date).add(10, 'days').calendar()}</p>
                                             : <p>-</p>        
                                         }
                                         <div className={css.button} onClick={(e)=>handleDelete(item, e)}>

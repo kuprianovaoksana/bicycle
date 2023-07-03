@@ -50,7 +50,7 @@ const Registration = () => {
           }
         )
         .catch((error) => {
-          setMessage(error.response.data.message);
+          setMessage("Извините, сервер не отвечает, попробуйте позже");
         });
     };
   
