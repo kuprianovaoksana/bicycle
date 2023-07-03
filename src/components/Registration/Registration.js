@@ -39,12 +39,10 @@ const Registration = () => {
             setLastName("");
             setClientId("");
             setMessage("Вы успешно зарегистрированы!");
-
-
             setTimeout(() => {
               // window.location.replace("/entrance");
               navigate("/entrance");
-            }, 2000);
+            }, 3000);
           },
           {
             "Content-Type": "application/json",
