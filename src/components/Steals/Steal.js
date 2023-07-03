@@ -2,7 +2,7 @@ import axios from "axios";
 import css from "./steal.module.scss";
 import { useEffect, useState } from "react";
 import {useNavigate} from 'react-router-dom';
-
+import moment from 'moment';
 
 
 const Steal = () => {
@@ -11,6 +11,7 @@ const Steal = () => {
     const [data, setData] = useState("");
     let navigate = useNavigate();
 
+    let moment = require('moment');
 
     useEffect(()=>{
 
@@ -98,12 +99,16 @@ const Steal = () => {
                     </div>
                     <div className={css.stealsTable}>
                         {
-                            data ? data.map((item) => {
+                            data.length ? data.map((item) => {
                                     return <div className={css.steals} key={item._id} props={item} onClick={(e)=>{e.stopPropagation(); gotoSteal(item, e)}}>
                                         <p>{(count+=1)}</p>
                                         <p>{item.licenseNumber}</p>
                                         <p>{item.type}</p>
-                                        <p>{item.date}</p>
+                                        {
+                                            item.date?
+                                            <p>{moment(item.date).format('l')}</p>
+                                            : <p>-</p>        
+                                        }
                                         <div className={css.button} onClick={(e)=>handleDelete(item, e)}>
                                             <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Menu / Close_MD"> <path id="Vector" d="M18 18L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path> </g> </g></svg>
                                         </div>
